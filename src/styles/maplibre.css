@@ -1,0 +1,266 @@
+/* MapLibre GL JS Custom Styles */
+
+/* Custom marker animations */
+@keyframes marker-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.custom-marker {
+  animation: marker-pulse 2s ease-in-out infinite;
+}
+
+.geofence-marker {
+  animation: marker-pulse 3s ease-in-out infinite;
+}
+
+/* Popup customization */
+.maplibregl-popup {
+  max-width: 300px;
+  font-family: inherit;
+}
+
+.maplibregl-popup-content {
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.maplibregl-popup-close-button {
+  font-size: 20px;
+  padding: 4px 8px;
+  color: #64748b;
+  transition: color 0.2s;
+}
+
+.maplibregl-popup-close-button:hover {
+  color: #0f172a;
+  background-color: transparent;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  border-color: transparent;
+}
+
+/* Control button styling */
+.maplibregl-ctrl-group button {
+  transition: all 0.2s;
+}
+
+.maplibregl-ctrl-group button:hover {
+  background-color: #f1f5f9;
+}
+
+.maplibregl-ctrl-compass .maplibregl-ctrl-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%23333'%3E%3Cpath d='M10.5 14l4-8 4 8h-8z'/%3E%3Cpath d='M10.5 16l4 8 4-8h-8z' fill='%23ccc'/%3E%3C/svg%3E");
+}
+
+/* Attribution styling */
+.maplibregl-ctrl-attrib {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.maplibregl-ctrl-attrib a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.maplibregl-ctrl-attrib a:hover {
+  text-decoration: underline;
+}
+
+/* Geolocate button styling */
+.maplibregl-ctrl-geolocate {
+  background-color: white;
+}
+
+.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active {
+  background-color: #3b82f6;
+}
+
+.maplibregl-ctrl-geolocate.maplibregl-ctrl-geolocate-active .maplibregl-ctrl-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Scale control styling */
+.maplibregl-ctrl-scale {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  font-size: 11px;
+  border: 2px solid #3b82f6;
+  border-top: none;
+  color: #0f172a;
+  padding: 2px 5px;
+}
+
+/* Map container styling */
+.maplibregl-map {
+  font-family: inherit;
+}
+
+.maplibregl-canvas-container.maplibregl-interactive {
+  cursor: default;
+}
+
+.maplibregl-canvas-container.maplibregl-interactive:active {
+  cursor: grabbing;
+}
+
+/* Loading animation */
+.maplibregl-ctrl-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Marker hover effects */
+.custom-marker:hover,
+.geofence-marker:hover {
+  animation: none;
+  z-index: 1000;
+}
+
+/* Custom crosshair cursor for add mode */
+.maplibregl-canvas-container.crosshair {
+  cursor: crosshair !important;
+}
+
+/* Fullscreen mode adjustments */
+.maplibregl-ctrl-fullscreen {
+  display: none; /* We use our custom fullscreen button */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .maplibregl-ctrl-group {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .maplibregl-popup-content {
+    max-width: calc(100vw - 40px);
+  }
+  
+  .custom-marker,
+  .geofence-marker {
+    transform: scale(0.9);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .maplibregl-ctrl-group button {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+  
+  .maplibregl-ctrl-group button:hover {
+    background-color: #334155;
+  }
+  
+  .maplibregl-popup-content {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+  
+  .maplibregl-ctrl-attrib {
+    background-color: rgba(30, 41, 59, 0.8);
+    color: #f1f5f9;
+  }
+  
+  .maplibregl-ctrl-scale {
+    background-color: rgba(30, 41, 59, 0.8);
+    color: #f1f5f9;
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+.custom-marker,
+.geofence-marker,
+.maplibregl-ctrl-group button,
+.maplibregl-popup {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 3D building hover effect */
+.maplibregl-canvas {
+  outline: none;
+}
+
+/* Custom cluster markers (if needed in future) */
+.marker-cluster {
+  background: #3b82f6;
+  border: 3px solid #1e40af;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.marker-cluster:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+              0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Geofence polygon styling improvements */
+.maplibregl-canvas {
+  will-change: transform;
+}
+
+/* Performance optimization */
+.maplibregl-map {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Vehicle marker pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+/* Vehicle marker styles */
+.vehicle-marker {
+  transition: transform 0.3s ease;
+}
+
+.vehicle-marker.animated {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+

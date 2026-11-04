@@ -1,0 +1,450 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling globally */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for Tasks page containers */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 1rem;
+}
+
+/* Optimize Kanban card rendering for smooth performance */
+.kanban-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth transitions for Kanban columns */
+.kanban-column {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 210 40% 98%;
+    --foreground: 220 25% 10%;
+
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    /* Primary - Deep Professional Blue */
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 30%;
+    --primary-light: 217 91% 85%;
+
+    /* Secondary - Neutral Gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 25% 10%;
+
+    /* Accent - Vibrant Orange */
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 25 95% 48%;
+    --accent-light: 25 95% 90%;
+
+    /* Success - Green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 90%;
+
+    /* Warning - Yellow */
+    --warning: 45 93% 47%;
+    --warning-foreground: 220 25% 10%;
+    --warning-light: 45 93% 90%;
+
+    /* Destructive - Red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84% 90%;
+
+    /* Muted colors */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Border and input */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 35%;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 35%), hsl(217 91% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(35 95% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 35%) 0%, hsl(217 91% 45%) 50%, hsl(25 95% 53%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210 40% 98%), hsl(220 14% 96%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    --shadow-primary: 0 10px 30px -10px hsl(217 91% 35% / 0.3);
+    --shadow-accent: 0 10px 30px -10px hsl(25 95% 53% / 0.3);
+
+    /* Transitions */
+    --transition-base: all 0.2s ease;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 217 91% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 35%;
+
+    /* Mobile safe area insets */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  .dark {
+    /* Base colors */
+    --background: 220 25% 10%;
+    --foreground: 210 40% 98%;
+
+    /* Card colors */
+    --card: 220 20% 14%;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover colors */
+    --popover: 220 20% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary - Deep Professional Blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
+    --primary-light: 217 91% 25%;
+
+    /* Secondary - Neutral Gray */
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Accent - Vibrant Orange */
+    --accent: 25 95% 58%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 25 95% 53%;
+    --accent-light: 25 95% 20%;
+
+    /* Success - Green */
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 76% 20%;
+
+    /* Warning - Yellow */
+    --warning: 45 93% 55%;
+    --warning-foreground: 220 25% 10%;
+    --warning-light: 45 93% 20%;
+
+    /* Destructive - Red */
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84% 20%;
+
+    /* Muted colors */
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 9% 65%;
+
+    /* Border and input */
+    --border: 220 20% 24%;
+    --input: 220 20% 24%;
+    --ring: 217 91% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 25%), hsl(217 91% 35%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 48%), hsl(35 95% 53%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 25%) 0%, hsl(217 91% 35%) 50%, hsl(25 95% 48%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(220 25% 10%), hsl(220 20% 14%));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3);
+    --shadow-primary: 0 10px 30px -10px hsl(217 91% 60% / 0.4);
+    --shadow-accent: 0 10px 30px -10px hsl(25 95% 58% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 220 20% 14%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 20% 24%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    /* Remove 300ms tap delay on mobile */
+    touch-action: manipulation;
+    /* Remove iOS tap highlight */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
+    /* iOS rubber band only on y-axis */
+    overscroll-behavior-x: none;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Bottom safe area for home indicator */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Grid pattern for hero section */
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 6px, 0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBARS
+   Hide on mobile/touch, show on desktop
+───────────────────────────────────────── */
+
+/* Desktop scrollbar styling */
+@media (hover: hover) and (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 10px;
+    border: 2px solid hsl(var(--secondary));
+    transition: all 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+/* Hide scrollbars on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+/* For specific scrollable containers with .custom-scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  overflow-y: auto;
+  /* Momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.2);
+    border: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.4);
+  }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE-SPECIFIC UTILITY CLASSES
+───────────────────────────────────────── */
+
+/* Safe area aware padding */
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-left {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* Full-width on mobile dialogs */
+@media (max-width: 640px) {
+
+  /* Make sure dialog content never overflow x */
+  [data-radix-dialog-content] {
+    max-width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+
+  /* Tabs list wraps instead of overflowing */
+  [role="tablist"] {
+    flex-wrap: wrap;
+    height: auto !important;
+  }
+
+  /* Prevent fixed elements from overflowing */
+  .fixed {
+    max-width: 100vw;
+  }
+}
+
+/* ─────────────────────────────────────────
+   TOUCH TARGETS — minimum 44px on mobile
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  button,
+  [role="button"],
+  a,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+  }
+
+  /* Exception: inline icon buttons can be smaller */
+  .btn-icon-sm {
+    min-height: unset;
+  }
+
+  /* Exception: badge-like elements */
+  [data-radix-checkbox-root],
+  .checkbox-sm {
+    min-height: unset;
+  }
+
+  /* Select triggers need bigger tap area */
+  [data-radix-select-trigger] {
+    min-height: 44px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   DIALOG MOBILE FIXES
+───────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Handle keyboard pushing content up on mobile */
+  [data-radix-dialog-overlay] {
+    align-items: flex-end;
+  }
+}
+
+/* Desktop: remove mobile header offset from main */
+@media (min-width: 768px) {
+  main {
+    padding-top: 0 !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   KANBAN MOBILE OPTIMIZATION
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .kanban-board {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: unset;
+  }
+
+  .kanban-column {
+    min-width: unset !important;
+    width: 100% !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   INPUT / FORM MOBILE FIXES
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Prevent iOS auto-zoom on input focus (min 16px font) */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="date"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
